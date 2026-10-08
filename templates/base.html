@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0a1f44">
+    <title>{% block title %}Rainbow Consultants | Building Plan Approvals{% endblock %}</title>
+    <meta name="description" content="Rainbow Consultants - Expert Building Plan Approvals in Karnataka">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="container">
+        <div>
+            <span><i class="fas fa-phone"></i>+91 {{ company.phone_primary }}</span>
+            <span><i class="fas fa-envelope"></i>{{ company.email }}</span>
+            <span class="hide-mobile"><i class="fas fa-clock"></i>24/7 Support</span>
+        </div>
+        <div>
+            <a href="https://wa.me/91{{ company.whatsapp }}" target="_blank" style="color:#dbe4f0;margin-right:16px"><i class="fab fa-whatsapp"></i></a>
+            <a href="tel:+91{{ company.phone_primary }}" style="color:#dbe4f0"><i class="fas fa-phone"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="/static/images/logo.png" alt="Rainbow Consultants" class="logo-img"
+                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230a1f44%22 rx=%2220%22/><text x=%2250%22 y=%2265%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%23d4af37%22 font-family=%22serif%22 font-weight=%22bold%22>R</text></svg>'">
+            <div class="logo-text">
+                <span class="logo-main">RAINBOW</span>
+                <span class="logo-sub">CONSULTANTS</span>
+            </div>
+        </a>
+
+        <!-- Hamburger Button (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/#home">Home</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#areas">Areas</a></li>
+            <li><a href="/#appointment">Appointment</a></li>
+            <li><a href="/#contact" class="nav-cta">Contact Us</a></li>
+            <li>
+                <a href="/admin/login" class="nav-admin" title="Admin Login">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Admin</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+{% block content %}{% endblock %}
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <div>
+            <h2>Ready to Get Your Building Plan Approved?</h2>
+            <p>Free consultation — No advance payment required!</p>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <a href="tel:+91{{ company.phone_primary }}" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
+            <a href="https://wa.me/91{{ company.whatsapp }}" target="_blank" class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <i class="fas fa-home"></i> RAINBOW CONSULTANTS
+                </div>
+                <p>Your trusted partner for Building Plan Approvals, Construction Consultancy and Statutory Compliance across Karnataka since 2018.</p>
+                <p style="color:#d4af37;font-weight:600;font-size:12px;margin-top:14px;">
+                    <i class="fas fa-certificate"></i> MSME Registered | Est. 2018
+                </p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/#home">Home</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/#appointment">Appointment</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="/#services">Building Plan Approval</a></li>
+                    <li><a href="/#services">BDA / GBA Approvals</a></li>
+                    <li><a href="/#services">Khata &amp; e-Khata</a></li>
+                    <li><a href="/#services">NOC &amp; Statutory</a></li>
+                    <li><a href="/#services">Construction Consultancy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#d4af37;margin-right:8px;"></i>{{ company.address }}</p>
+                <p><i class="fas fa-phone" style="color:#d4af37;margin-right:8px;"></i>+91 {{ company.phone_primary }}</p>
+                <p><i class="fas fa-phone-alt" style="color:#d4af37;margin-right:8px;"></i>+91 {{ company.phone_secondary }}</p>
+                <p><i class="fas fa-envelope" style="color:#d4af37;margin-right:8px;"></i>{{ company.email }}</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Rainbow Consultants. All Rights Reserved.</p>
+            <p class="dev-credit">
+                <i class="fas fa-code"></i>
+                Developed by <strong>Santhosh</strong>
+                <span class="dev-badge">
+                    <i class="fab fa-aws"></i> AWS Developer
+                </span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/91{{ company.whatsapp }}" target="_blank" class="wa-float" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<a href="tel:+91{{ company.phone_primary }}" class="call-float" title="Call">
+    <i class="fas fa-phone"></i>
+</a>
+
+<!-- MOBILE STICKY CTA (bottom bar) -->
+<div class="mobile-cta-bar">
+    <a href="tel:+91{{ company.phone_primary }}" class="mobile-cta-btn call">
+        <i class="fas fa-phone"></i>
+        <span>Call</span>
+    </a>
+    <a href="https://wa.me/91{{ company.whatsapp }}" target="_blank" class="mobile-cta-btn wa">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp</span>
+    </a>
+    <a href="/#appointment" class="mobile-cta-btn book">
+        <i class="fas fa-calendar-check"></i>
+        <span>Book</span>
+    </a>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>

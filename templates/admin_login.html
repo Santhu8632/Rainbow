@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Rainbow Consultants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="admin-login-page">
+    <div class="admin-login-card">
+        <div class="logo">
+            <img src="/static/images/logo.png" alt="Logo" class="logo-img"
+                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230a1f44%22 rx=%2220%22/><text x=%2250%22 y=%2265%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%23d4af37%22 font-family=%22serif%22 font-weight=%22bold%22>R</text></svg>'">
+            <div class="logo-text">
+                <span class="logo-main">RAINBOW</span>
+                <span class="logo-sub">ADMIN</span>
+            </div>
+        </div>
+        <h1>Admin Login</h1>
+        <p>Secure Access Panel</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required autofocus placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </form>
+
+        <p style="text-align:center;margin-top:22px;font-size:12px;color:#8899aa;background:#fef9e7;padding:10px;border-radius:8px;border:1px dashed #d4af37;">
+            <strong>Default:</strong> admin / rainbow@2025
+        </p>
+        <p style="text-align:center;margin-top:12px;">
+            <a href="/" style="color:#0a1f44;font-size:13px;font-weight:600;">
+                <i class="fas fa-arrow-left"></i> Back to Website
+            </a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

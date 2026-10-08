@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Rainbow Consultants</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f3f9;
+            color: #1a2332;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER */
+        .admin-header {
+            background: linear-gradient(135deg, #0a1f44, #1a3a7a);
+            color: #fff;
+            padding: 18px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .admin-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .admin-header h1 {
+            font-size: 20px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        .admin-header h1 i { color: #d4af37; font-size: 22px; }
+        .admin-header .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .admin-header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .admin-header .user-info i { color: #d4af37; }
+        .admin-header a.btn-head {
+            padding: 9px 18px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .admin-header a.btn-head:hover {
+            background: #d4af37;
+            transform: translateY(-2px);
+        }
+        .admin-header a.btn-head.danger {
+            background: rgba(239,68,68,0.8);
+        }
+        .admin-header a.btn-head.danger:hover {
+            background: #ef4444;
+        }
+
+        /* BODY */
+        .admin-body { padding: 32px 0; }
+
+        /* STATS */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            margin-bottom: 30px;
+        }
+        .admin-stat {
+            background: #fff;
+            padding: 26px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(10,31,68,0.06);
+            border-left: 5px solid #0a1f44;
+            transition: all 0.4s;
+        }
+        .admin-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(10,31,68,0.12);
+        }
+        .admin-stat.gold { border-left-color: #d4af37; }
+        .admin-stat.green { border-left-color: #10b981; }
+        .admin-stat h3 {
+            font-size: 34px;
+            color: #0a1f44;
+            font-weight: 900;
+            margin-bottom: 4px;
+            font-family: 'Playfair Display', serif;
+        }
+        .admin-stat p {
+            font-size: 13px;
+            color: #667;
+            font-weight: 600;
+        }
+
+        /* SECTIONS */
+        .admin-section {
+            background: #fff;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(10,31,68,0.06);
+            margin-bottom: 28px;
+        }
+        .admin-section h2 {
+            font-size: 18px;
+            color: #0a1f44;
+            margin-bottom: 22px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #f0f3f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+        }
+        .admin-section h2 i { color: #d4af37; }
+
+        /* TABLE */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        thead th {
+            background: #f8faff;
+            padding: 14px 12px;
+            text-align: left;
+            font-size: 11.5px;
+            color: #0a1f44;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e0e6ef;
+            white-space: nowrap;
+            font-weight: 800;
+        }
+        tbody td {
+            padding: 14px 12px;
+            font-size: 13.5px;
+            color: #333;
+            border-bottom: 1px solid #f0f3f9;
+            vertical-align: top;
+        }
+        tbody tr { transition: background 0.3s; }
+        tbody tr:hover { background: #fafbff; }
+        tbody tr:last-child td { border-bottom: none; }
+
+        .btn-del {
+            padding: 6px 14px;
+            background: #fee2e2;
+            color: #991b1b;
+            border: none;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .btn-del:hover {
+            background: #ef4444;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .empty-msg {
+            text-align: center;
+            padding: 50px 20px;
+            color: #8899aa;
+            font-size: 14px;
+        }
+        .empty-msg i {
+            font-size: 50px;
+            display: block;
+            margin-bottom: 14px;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 700px) {
+            .admin-header h1 { font-size: 16px; }
+            .admin-header .user-info { display: none; }
+            .admin-body { padding: 20px 0; }
+            .admin-section { padding: 20px; }
+            .admin-stat h3 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="admin-header">
+    <div class="container">
+        <h1><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
+        <div class="actions">
+            <span class="user-info">
+                <i class="fas fa-user-circle"></i>
+                {{ current_user.username }}
+            </span>
+            <a href="/" target="_blank" class="btn-head">
+                <i class="fas fa-globe"></i> View Site
+            </a>
+            <a href="/admin/logout" class="btn-head danger">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- BODY -->
+<div class="container admin-body">
+
+    <!-- STATS -->
+    <div class="stats-row">
+        <div class="admin-stat">
+            <h3>{{ total_enquiries }}</h3>
+            <p>Total Enquiries</p>
+        </div>
+        <div class="admin-stat gold">
+            <h3>{{ total_appointments }}</h3>
+            <p>Total Appointments</p>
+        </div>
+        <div class="admin-stat green">
+            <h3>{{ total_enquiries + total_appointments }}</h3>
+            <p>Total Leads</p>
+        </div>
+    </div>
+
+    <!-- ENQUIRIES -->
+    <div class="admin-section">
+        <h2><i class="fas fa-envelope-open-text"></i> All Enquiries</h2>
+        {% if enquiries %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Service</th>
+                        <th>Message</th>
+                        <th>Date & Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in enquiries %}
+                    <tr>
+                        <td>{{ e.id }}</td>
+                        <td><strong>{{ e.name }}</strong></td>
+                        <td><a href="tel:{{ e.phone }}" style="color:#0a1f44;">{{ e.phone }}</a></td>
+                        <td>{{ e.email or '-' }}</td>
+                        <td>{{ e.service or '-' }}</td>
+                        <td>{{ (e.message or '-')[:70] }}{% if e.message and e.message|length > 70 %}...{% endif %}</td>
+                        <td style="white-space:nowrap;">{{ e.created_at.strftime('%d %b %Y, %I:%M %p') }}</td>
+                        <td>
+                            <form method="POST" action="/admin/delete/enquiry/{{ e.id }}" onsubmit="return confirm('Delete this enquiry?');" style="display:inline;">
+                                <button type="submit" class="btn-del">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-msg">
+            <i class="fas fa-inbox"></i>
+            No enquiries yet.
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- APPOINTMENTS -->
+    <div class="admin-section">
+        <h2><i class="fas fa-calendar-check"></i> All Appointments</h2>
+        {% if appointments %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Service</th>
+                        <th>Type</th>
+                        <th>Preferred Date</th>
+                        <th>Location</th>
+                        <th>Notes</th>
+                        <th>Booked On</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in appointments %}
+                    <tr>
+                        <td>{{ a.id }}</td>
+                        <td><strong>{{ a.name }}</strong></td>
+                        <td><a href="tel:{{ a.phone }}" style="color:#0a1f44;">{{ a.phone }}</a></td>
+                        <td>{{ a.email or '-' }}</td>
+                        <td>{{ a.service or '-' }}</td>
+                        <td>{{ a.consultation_type or '-' }}</td>
+                        <td>{{ a.preferred_date or '-' }}</td>
+                        <td>{{ (a.location or '-')[:40] }}</td>
+                        <td>{{ (a.notes or '-')[:50] }}</td>
+                        <td style="white-space:nowrap;">{{ a.created_at.strftime('%d %b %Y, %I:%M %p') }}</td>
+                        <td>
+                            <form method="POST" action="/admin/delete/appointment/{{ a.id }}" onsubmit="return confirm('Delete this appointment?');" style="display:inline;">
+                                <button type="submit" class="btn-del">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-msg">
+            <i class="fas fa-calendar-times"></i>
+            No appointments yet.
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
