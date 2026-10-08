@@ -208,9 +208,4 @@ def init_db():
 
 
 if __name__ == '__main__':
-    init_db()
-    print("=" * 55)
-    print("🚀 Website: http://127.0.0.1:5000")
-    print("🔐 Admin:   http://127.0.0.1:5000/admin/login")
-    print("=" * 55)
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
